@@ -1,2 +1,2 @@
 # Data-Science-Projects
-Data Science Projects from TTA
+This repository contains Data Science projects I completed at The Tech Academy
