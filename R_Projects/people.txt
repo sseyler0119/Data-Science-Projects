@@ -1,0 +1,10 @@
+fname lname sex
+Andy Brennan male
+Harry Truman male
+Lucy Moran female
+Dale Cooper male
+Sally Johnson female
+Audrey Horne female
+Bob Smith male
+Donna Heyard female
+Laura Palmer female
