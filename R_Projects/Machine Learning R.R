@@ -26,8 +26,8 @@ library(tree)
 
 # train a decision tree model
 #model <- tree(
- # formula = Species ~ ., # . says to include all other variables in the data frame as the explanatory variable
-  #data = train) # Species ~ . is equivalent to formula = Species ~ Petal.Length + Petal.Width + Sepal.Length + Sepal.Width
+# formula = Species ~ ., # . says to include all other variables in the data frame as the explanatory variable
+#data = train) # Species ~ . is equivalent to formula = Species ~ Petal.Length + Petal.Width + Sepal.Length + Sepal.Width
 
 # use two predictors, using the above model to train the decision tree causes an error with
 #     the partition.tree() command, "tree can only have one or two predictors", this is the workaround
@@ -76,10 +76,15 @@ table(
   y = test$Species)
 
 # load the caret package
-library(ggplot2)
 library(caret)
 
 # evaluate the prediction results
 confusionMatrix(
   data = predictions,
   reference = test$Species)
+
+# set wording directory
+setwd("C:/Users/sseyl/OneDrive/Documents/GitHub/Data-Science-Projects/R_Projects") # use / instead of \ for directory
+
+# save the tree model
+save(model, file= "Tree.RData")
