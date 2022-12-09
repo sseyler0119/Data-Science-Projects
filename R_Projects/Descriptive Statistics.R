@@ -8,7 +8,7 @@ movies <- read.csv(
   quote="\""
 )
 
-genre <- read.csv(
+genres <- read.csv(
   file = "Genres.csv",
   quote="\""
   
@@ -16,12 +16,12 @@ genre <- read.csv(
 
 # peek at the data
 head(movies)
-head(genre)
+head(genres)
 
 # Univariate statistics for qualitative variables
 table(movies$Rating) # returns frequency of each rating
 
-table(genre$Genre) # returns frequency of each genre
+table(genres$Genre) # returns frequency of each genre
 
 # Univariate statistics for quantitative variables
 
@@ -65,3 +65,24 @@ plot(density(movies$Runtime)) # peak appears stepper and tale is positively skew
 summary(movies$Runtime)
 
 # Bivariate Statistics for two qualitative variables
+table(genres$Genre, genres$Rating)
+
+# bivariate statistics for two quantitative variables
+# covariance
+cov(movies$Runtime, movies$Box.Office)
+
+cov(movies$Critic.Score, movies$Box.Office)
+
+# correlation coefficients
+cor(movies$Runtime, movies$Box.Office) # 0.347748 movie run time more strongly correlates to revenue than critic score
+cor(movies$Critic.Score, movies$Box.Office) # 0.1608324 # both of these values are relatively small though, so aren't good indicators of revenue
+
+# Bivariate analysis for both a qualitative and quantitative variable
+# average box office revenue across each rating category
+tapply(movies$Box.Office, movies$Rating, mean) # apply mean function to the B.O. Revenue, grouped by rating, pg made the most followed by g, pg-13
+
+tapply(genres$Box.Office, genres$Genre, mean) # adventure made the most, followed by 
+
+
+
+
