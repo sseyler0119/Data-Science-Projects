@@ -128,6 +128,70 @@ glm_house$coefficients # Intercept 206855.814, median income: $82608.959, mean r
 #install.packages("randomForest")
 library('randomForest') # load library
 
+names(train) # view column names in training data
+
+set.seed(1738)
+
+train_y = train[, 'median_house_value']
+train_x = train[, names(train) != 'median_house_value']
+
+head(train_y)
+head(train_x)
+
+rf_model = randomForest(train_x, y = train_y, ntree = 500, importance = TRUE)
+
+names(rf_model) # examine all of the methods we can call on the model
+
+rf_model$importance
+
+# out-of-bag error estimate
+
+oob_prediction = predict(rf_model)
+
+train_mse = mean(as.numeric((oob_prediction - train_y)^2))
+
+oob_rmse = sqrt(train_mse)
+oob_rmse # using a random forest of 1000 decision trees, we are able to predict the mdian price of a house in a given district to w/in $49k of actual median price
+
+# test data
+test_y = test[,'median_house_value']
+test_x = test[, names(test) != 'median_house_value']
+
+y_pred = predict(rf_model, test_x)
+test_mse = mean(((y_pred - test_y)^2))
+test_rmse = sqrt(test_mse)
+test_rmse # $47625.57, pretty close to training data
+
+
+
+
+
+# ************* change predictors to see if we can get a better outcome ****************
+
+
+glm_houseMod = glm(median_house_value ~ median_income + longitude + latitude, data = cleaned_housing) # fit the data
+
+# cleaned_housing data, fitted data, K = 5: training data split into 5 equal portions
+# one of the five folds is put off to the side as a mini test set, model is trained on the remaining 4 folds
+# The process is repeated on each of the 5 folds and the average predictions produced from the iterations fo the model is taken
+k_fold_cv_error = cv.glm(cleaned_housing, glm_houseMod, K=5)
+
+# first component is raw cross-validation estimate of prediction error: 5539004010
+# second component is the adjusted cross-validation estimate: 5538647949
+k_fold_cv_error$delta
+
+glm_cv_rmse = sqrt(k_fold_cv_error$delta)[1]
+glm_cv_rmse # off by about $74k
+
+names(glm_houseMod) # these are the methods we can use on the model
+
+# call coefficients
+glm_houseMod$coefficients # Intercept 206855.814, median income: $69624.10, longitude: -99947.36, latitude: -103496.59
+
+# Random Forest model
+#install.packages("randomForest")
+library('randomForest') # load library
+
 ?randomForest # read about classification and regression with random Forest
 
 names(train) # view column names in training data
@@ -163,4 +227,10 @@ y_pred = predict(rf_model, test_x)
 test_mse = mean(((y_pred - test_y)^2))
 test_rmse = sqrt(test_mse)
 test_rmse # $47625.57, pretty close to training data
+
+# Overall, using longitude/latitude seemed to get a closer prediction than using rooms and population
+
+
+
+
 
