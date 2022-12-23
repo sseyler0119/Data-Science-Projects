@@ -1,0 +1,60 @@
+/* Get a fancy font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat&family=Nixie+One&display=swap');
+
+
+body {
+  background-color: #11334f;
+  color: #e6e6e6; /* text color */
+}
+
+.title{
+    font-family: 'Nixie One', cursive;
+}
+
+/* Change header text to imported font */
+h3 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #e6e6e6;
+}
+
+h2 {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* Make text visible on inputs/
+.shiny-input-container {
+  color:  	#e6e6e6;
+} */
+
+/* input containers */
+.inputs {
+  margin: 5rem auto 5rem;
+  background-color: 	#4077a6;
+}
+
+/* plot containers*/
+.displayContainer {
+  margin: 5rem auto 5rem;
+  padding-left: 10rem;
+  padding-right: 5rem;
+  padding-bottom: 4rem;
+}
+
+.plotContainer {
+  margin: 5rem auto 5rem;
+  padding-left: 10rem;
+  padding-right: 5rem;
+  padding-bottom: 4rem;
+}
+
+*.irs-min, *.irs-max{
+  color: #e6e6e6;
+  background-color: #11334f !important;
+  padding: 6px !important;
+  border-radius: 50% !important;
+  margin-bottom: 2rem !important;
+}
+
+*.irs-single {
+  color: #000 !important;
+}
