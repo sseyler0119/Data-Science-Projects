@@ -65,8 +65,8 @@ ui <- fluidPage(
   hr(),
   
   fluidRow(
-    sidebarPanel(class="inputs", id="slider",
-      setSliderColor("#cddc39", 1), #4caf50
+    sidebarPanel(class="inputs",
+      setSliderColor("#cddc39", 1), 
       sliderInput("bins", "Number of bins:", min = 10, max = 35, value = 15)
     ),
     column(8,class="displayContainer",

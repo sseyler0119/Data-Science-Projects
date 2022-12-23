@@ -7,7 +7,7 @@ body {
   color: #e6e6e6; /* text color */
 }
 
-.title{
+.title {
     font-family: 'Nixie One', cursive;
 }
 
@@ -21,10 +21,6 @@ h2 {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-/* Make text visible on inputs/
-.shiny-input-container {
-  color:  	#e6e6e6;
-} */
 
 /* input containers */
 .inputs {
@@ -47,6 +43,7 @@ h2 {
   padding-bottom: 4rem;
 }
 
+/* override slider min/max labels */
 *.irs-min, *.irs-max{
   color: #e6e6e6;
   background-color: #11334f !important;
